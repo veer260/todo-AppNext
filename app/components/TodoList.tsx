@@ -1,4 +1,12 @@
-const TodoList = () => {
+import { Task } from "@/types/tasks";
+
+import TaskComponent from "./TaskComponent";
+
+interface TodoListProps {
+  todos: Task[];
+}
+
+const TodoList: React.FC<TodoListProps> = ({ todos }) => {
   return (
     <div>
       <div className="overflow-x-auto">
@@ -6,24 +14,23 @@ const TodoList = () => {
           {/* head */}
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Task</th>
 
-              <th>Favorite Color</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {/* row 1 */}
-            <tr>
-              <td>Cy Ganderton</td>
+            {todos.map((todo) => {
+              return <TaskComponent key={todo.id} task={todo} />;
+            })}
 
-              <td>Blue</td>
-            </tr>
             {/* row 2 */}
-            <tr>
+            {/* <tr>
               <td>Hart Hagerty</td>
 
               <td>Purple</td>
-            </tr>
+            </tr> */}
             {/* row 3 */}
           </tbody>
         </table>
